@@ -2,7 +2,7 @@
   <img src="assets/logo/espion-logo.png" width="220" alt="ESPION Logo">
 </p>
 
-<h1 align="center">ESPION</h1>
+<h1 align="center">🟣 ESPION 🟣</h1>
 
 <p align="center">
   <strong>Engineered by Espada</strong>
@@ -14,7 +14,6 @@
 
 <div align="center">
 
-# 🟣 ESPION 🟣
 
 ### **Embedded Security Platform**
 
