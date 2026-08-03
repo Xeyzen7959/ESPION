@@ -1,11 +1,25 @@
+/**
+ * ============================================================================
+ *  ESPION Firmware — Entry Point
+ *  Engineered by Espada
+ *  https://github.com/Xeyzen7959
+ * ============================================================================
+ */
+
 #include <Arduino.h>
 
 #include "Config.h"
 #include "boot/BootManager.h"
 #include "display/DisplayManager.h"
+#include "input/InputManager.h"
+#include "system/Application.h"
 
 namespace {
 espion::boot::BootManager bootManager;
+espion::input::InputManager inputManager;
+espion::system::Application application(inputManager);
+
+bool applicationStarted = false;
 }
 
 void setup() {
@@ -23,6 +37,7 @@ void setup() {
         return;
     }
 
+    inputManager.begin();
     bootManager.begin();
 }
 
@@ -32,6 +47,16 @@ void loop() {
         return;
     }
 
-    // Main menu will be started here in the next milestone.
+    if (!applicationStarted) {
+        application.begin();
+        applicationStarted = true;
+
+#if ESPION_ENABLE_SERIAL_DEBUG
+        Serial.println("[ESPION] Application started.");
+        Serial.println("[ESPION] Home scene active.");
+#endif
+    }
+
+    application.update();
     delay(1);
 }
